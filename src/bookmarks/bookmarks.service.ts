@@ -1,3 +1,4 @@
+import { CreateBookmarkDto } from './dto/create-bookmark.dto';
 import { Injectable } from '@nestjs/common';
 import { Bookmark } from './bookmark.model';
 import { v4 as uuid } from 'uuid';
@@ -10,7 +11,8 @@ export class BookmarksService {
     return this.bookmarks;
   }
 
-  createBookmark(url: string, description: string): Bookmark {
+  createBookmark(createBookmarkDto: CreateBookmarkDto): Bookmark {
+    const { url, description } = createBookmarkDto;
     const bookmark: Bookmark = {
       id: uuid(),
       url,
